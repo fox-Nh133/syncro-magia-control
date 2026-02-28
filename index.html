@@ -505,7 +505,8 @@ jsonInput.addEventListener('change', e => {
       updateStartBtn();
       updateUploadBtn();
       toast('JSON loaded: ' + file.name);
-    } catch {
+    } catch (err) {
+      console.error(err);
       toast('JSON parse error');
     }
   };
@@ -655,9 +656,7 @@ instantBtn.addEventListener('click', () => {
 
 // Load default audio
 audioPlayer.src = 'audio.mp3';
-audioObjectURL = 'audio.mp3';
 audioNameEl.textContent = 'audio.mp3';
-audioLabel.classList.add('loaded');
 
 connect();
 
@@ -665,9 +664,6 @@ socket.on('connect', () => {
   updateUploadBtn();
   updateStartBtn();
 });
-
-// Wire file label clicks to inputs
-document.getElementById('json-label').addEventListener('click', () => jsonInput.click());
 </script>
 </body>
 </html>
