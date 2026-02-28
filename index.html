@@ -260,11 +260,14 @@
       <input type="file" id="json-input" accept=".json,application/json" class="d-none">
     </label>
 
-    <label class="mc-file-label" id="audio-label">
+    <div class="mc-file-label" id="audio-label" style="cursor:default;">
       <i class="bi bi-file-music"></i>
-      <span class="file-name" id="audio-name">音源ファイルを選択...</span>
-      <input type="file" id="audio-input" accept="audio/*" class="d-none">
-    </label>
+      <span class="file-name" id="audio-name">audio.mp3</span>
+      <label class="ms-auto mb-0" title="音源を変更" style="cursor:pointer;color:var(--text-muted);font-size:1.1rem;">
+        <i class="bi bi-folder2-open"></i>
+        <input type="file" id="audio-input" accept="audio/*" class="d-none">
+      </label>
+    </div>
 
     <div class="d-flex gap-2 mt-3">
       <button class="btn btn-sm btn-outline-secondary flex-fill" id="upload-btn" disabled>
@@ -649,6 +652,13 @@ instantBtn.addEventListener('click', () => {
 // ════════════════════════════════════════════════════════════
 // Boot
 // ════════════════════════════════════════════════════════════
+
+// Load default audio
+audioPlayer.src = 'audio.mp3';
+audioObjectURL = 'audio.mp3';
+audioNameEl.textContent = 'audio.mp3';
+audioLabel.classList.add('loaded');
+
 connect();
 
 socket.on('connect', () => {
@@ -658,7 +668,6 @@ socket.on('connect', () => {
 
 // Wire file label clicks to inputs
 document.getElementById('json-label').addEventListener('click', () => jsonInput.click());
-document.getElementById('audio-label').addEventListener('click', () => audioInput.click());
 </script>
 </body>
 </html>
