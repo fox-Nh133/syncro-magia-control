@@ -408,7 +408,7 @@ function toast(msg, duration = 2500) {
 // Socket.IO
 // ════════════════════════════════════════════════════════════
 function connect() {
-  socket = io(SERVER_URL, { transports: ['websocket', 'polling'] });
+  socket = io(SERVER_URL, { transports: ['websocket', 'polling'], auth: { role: 'admin' } });
 
   socket.on('connect', () => {
     connBadge.textContent = 'Connected';
